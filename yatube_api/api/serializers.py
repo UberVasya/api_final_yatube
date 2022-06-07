@@ -39,10 +39,13 @@ class GroupSerializer(serializers.ModelSerializer):
 
 class FollowSerializer(serializers.ModelSerializer):
     """Сериализатор подписок"""
+    # Эту штуку стырил.
+    # Не получалось преодолеть обязательность поля в теле запроса.
+    # Не понял как конструкция работает. На досуге почитаю документашку.
     user = SlugRelatedField(
         read_only=True, slug_field='username',
         default=serializers.CurrentUserDefault()
-    ) #Эту штуку стырил. Не получалось преодолеть обязательность поля в теле запроса.
+    )
     following = serializers.SlugRelatedField(
         queryset=User.objects.all(),
         slug_field='username',
