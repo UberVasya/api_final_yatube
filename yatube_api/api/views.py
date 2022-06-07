@@ -42,6 +42,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     """Просмотр групп."""
     serializer_class = GroupSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly,]
     pagination_class = None
 
     def get_queryset(self):
