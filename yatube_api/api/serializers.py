@@ -1,3 +1,4 @@
+import requests
 from rest_framework import serializers
 from rest_framework.relations import SlugRelatedField
 from rest_framework.validators import UniqueTogetherValidator
@@ -62,3 +63,10 @@ class FollowSerializer(serializers.ModelSerializer):
             message='Подписка существует'
         )
     ]
+
+    def validate(self, data):
+        request = self.context['request']
+        if request.user == data['following']:
+            raise serializers.ValidationError(
+                'Подписка на самого себя.')
+        return data
