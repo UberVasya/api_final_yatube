@@ -6,6 +6,7 @@ from posts.models import Comment, Post
 
 
 class PostSerializer(serializers.ModelSerializer):
+    """Сериалитзатор постов."""
     author = SlugRelatedField(slug_field='username', read_only=True)
 
     class Meta:
