@@ -55,13 +55,13 @@ class ListCreateViewSet(
     mixins.ListModelMixin,
     mixins.CreateModelMixin,
     viewsets.GenericViewSet):
-    """Кастомный класс для работы с подписками"""
+    """Кастомный класс для работы с подписками."""
 
     pass
 
 
 class FollowViewSet(ListCreateViewSet):
-    """Просмотр и создание подписки"""
+    """Просмотр и создание подписки."""
     serializer_class = FollowSerializer
     permission_classes = [IsAuthenticated, ]
     filter_backends = (filters.SearchFilter,)
