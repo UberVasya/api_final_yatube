@@ -54,7 +54,8 @@ class GroupViewSet(viewsets.ReadOnlyModelViewSet):
 class ListCreateViewSet(
     mixins.ListModelMixin,
     mixins.CreateModelMixin,
-    viewsets.GenericViewSet):
+    viewsets.GenericViewSet
+):
     """Кастомный класс для работы с подписками."""
 
     pass
