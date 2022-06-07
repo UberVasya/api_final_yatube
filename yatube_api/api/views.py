@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404
-from requests import Response
 from rest_framework import viewsets, mixins, filters
 from posts.models import Post, Group, Follow, User
 from .serializers import PostSerializer, CommentSerializer, GroupSerializer, \
@@ -42,7 +41,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     """Просмотр групп."""
     serializer_class = GroupSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly,]
+    permission_classes = [IsAuthenticatedOrReadOnly, ]
     pagination_class = None
 
     def get_queryset(self):
@@ -56,13 +55,15 @@ class ListCreateViewSet(
     mixins.ListModelMixin,
     mixins.CreateModelMixin,
     viewsets.GenericViewSet):
+    """Кастомный класс для работы с подписками"""
+
     pass
 
 
 class FollowViewSet(ListCreateViewSet):
     """Просмотр и создание подписки"""
     serializer_class = FollowSerializer
-    permission_classes = [IsAuthenticated,]
+    permission_classes = [IsAuthenticated, ]
     filter_backends = (filters.SearchFilter,)
     pagination_class = None
     search_fields = ('following__username',)
